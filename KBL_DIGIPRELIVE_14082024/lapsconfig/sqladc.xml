@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql>
+
+	<query code="sel_adcfacilityMaxid">
+		select nvl(max(adcfac_sno),0)+1 as facilityid from
+		comadc_facilities where adcfac_appno='^'
+	</query>
+
+	<query code="ins_adcfacility">
+		insert into comadc_facilities( adcfac_appno ,adcfac_sno
+		,adcfac_headid ,adcfac_id ,adcfac_group ,adcfac_category
+		,adcfac_amount ,adcfac_interest , adcfac_margin ,adcfac_os
+		,adcfac_osason ,adcfac_months ,adcfac_secvalue ,adcfac_remarks
+		,adcfac_cbsaccno ) values
+		(?,?,?,?,?,?,?,?,?,?,to_date(?,'dd/mm/yyyy'),?,?,?,?)
+	</query>
+
+	<query code="del_adcfacility">
+		delete from comadc_facilities where adcfac_appno=? and
+		adcfac_sno=?
+	</query>
+
+	<query code="upd_adcfacility">
+		update comadc_facilities set adcfac_headid=? ,adcfac_id=?
+		,adcfac_group=? ,adcfac_category=? ,adcfac_amount=?
+		,adcfac_interest=? , adcfac_margin=? ,adcfac_os=?
+		,adcfac_osason=to_date(?,'dd/mm/yyyy') ,adcfac_months=?
+		,adcfac_secvalue=? ,adcfac_remarks=? ,adcfac_cbsaccno=? where
+		adcfac_appno=? and adcfac_sno=?
+	</query>
+
+	<query code="sel_adcfacility">
+		select adcfac_appno, adcfac_headid, (select
+		upper(facility_catdesc) from facility_master where
+		facility_catid=adcfac_headid and facility_parent=0) as
+		facheaddesc, adcfac_id, (select upper(facility_catdesc) from
+		facility_master where facility_catid=adcfac_id and
+		facility_parent!=0) as facdesc, adcfac_amount,adcfac_interest ,
+		adcfac_margin ,adcfac_os ,to_char(adcfac_osason,'dd/mm/yyyy') as
+		adcfac_osason ,adcfac_months ,adcfac_secvalue ,adcfac_remarks
+		,adcfac_cbsaccno , adcfac_group, adcfac_sno,adcfac_category from
+		comadc_facilities where adcfac_appno='^' and adcfac_group='^'
+	</query>
+
+	<query code="updadcfacility">
+		update comadc_facilities set
+		adcfac_osason=to_date(?,'dd/mm/yyyy') where adcfac_appno=?
+	</query>
+
+	<query code="seladcappdetails">
+		select adc_appno, adc_comappid, comapp_companyname,
+		adc_holdusrid, adc_staus, adc_valuesin from comadc_applications,
+		comapplicant where comapp_id=adc_comappid and adc_appno='^'
+	</query>
+
+	<query code="sel_adcmaxappno">
+		select nvl(substr(max(adc_appno),7,14),'0') as appno from
+		comadc_applications where substr(adc_appno,1,5) ='^'
+	</query>
+
+	<query code="ins_adcapplication">
+		insert into comadc_applications ( adc_appno ,adc_appusrid
+		,adc_createdate ,adc_createorgscode , adc_valuesin ,adc_prdcode
+		,adc_comappid ,adc_holdusrid ,adc_staus,adc_mailchkstatus)
+		values (?,?,sysdate,?,?,?,?,?,'op','N')
+	</query>
+
+	<query code="selmax_adcsecdetails">
+		select nvl(max(sec_srlno),0)+1 as snomax from comadc_securities
+		where sec_appno='^'
+	</query>
+
+	<query code="ins_adcsecdetails">
+		insert into comadc_securities (sec_appno, sec_srlno, sec_id,
+		sec_desc, sec_value, sec_valuedate, sec_type, sec_tenor,
+		sec_valuedby, sec_insamt, sec_insexpdate,
+		sec_remarks,sec_facsno) values
+		(?,?,?,?,?,to_date(?,'dd/mm/yyyy'),?,?,?,?,to_date(?,'dd/mm/yyyy'),?,?)
+	</query>
+
+
+	<query code="upd_adcsecdetails">
+		update comadc_securities set sec_id=?, sec_desc=?, sec_value=?,
+		sec_valuedate=to_date(?,'dd/mm/yyyy'), sec_type=?, sec_tenor=?,
+		sec_valuedby=?, sec_insamt=?,
+		sec_insexpdate=to_date(?,'dd/mm/yyyy'),
+		sec_remarks=?,sec_facsno=? where sec_appno=? and sec_srlno=?
+	</query>
+
+	<query code="del_adcsecdetails">
+		delete from comadc_securities where sec_appno=? and sec_srlno=?
+	</query>
+
+	<query code="sel_adcsecdetails">
+		select sec_appno, sec_srlno, sec_id, sec_desc, sec_value,
+		to_char(sec_valuedate,'dd/mm/yyyy') as sec_valuedate, sec_type,
+		sec_tenor, sec_valuedby, sec_insamt,
+		to_char(sec_insexpdate,'dd/mm/yyyy') as sec_insexpdate,
+		sec_remarks, stat_data_desc as sec_name,sec_facsno from
+		comadc_securities, static_data where stat_data_id(+)=12 and
+		stat_data_desc1(+)=sec_id and sec_appno='^' order by
+		sec_appno,sec_srlno
+	</query>
+
+	<query code="adc_applnlist">
+		select adc_appno, comapp_companyname, adc_staus, adc_holdusrid
+		from comadc_applications, comapplicant, organisations where
+		adc_comappid=comapp_id and org_code like '^' and
+		org_scode=comapp_org_scode and comapp_oldid='^'
+	</query>
+
+	<query code="adc_checkapplnstatus">
+		select adc_appno from comadc_applications a, comapplicant b
+		where a.adc_comappid= b.comapp_id and upper(a.adc_staus) in (^)
+		and b.comapp_id='^'
+	</query>
+	<query code="sel_facilityforadhoc">
+		select adcfac_sno,facility_catdesc,adcfac_amount from
+		FACILITY_MASTER a, COMADC_FACILITIES b where a.facility_catid=
+		b.adcfac_id and b.adcfac_appno='^'
+	</query>
+
+	<query code="del_adcbankdetails">
+		delete from COMADC_BANKINGDETAILS where ADCBANK_APPNO=?
+	</query>
+	<query code="ins_adcbankdetails">
+		insert into COMADC_BANKINGDETAILS
+		(adcbank_appno,adcbank_type,adcbank_leadbank,adcbank_asset,adcbank_internalrating,adcbank_reviewduedate,
+		adcbank_externalrating_st,adcbank_externalrating_lt,adcbank_accountstatus,adcbank_propexistfb,adcbank_propproposedfb,adcbank_propexistnfb,adcbank_propproposednfb)values(?,?,?,?,?,to_date(?,'dd/mm/yyyy'),?,?,?,?,?,?,?)
+	</query>
+	<query code="sel_adcbankdetails">
+		select
+		adcbank_appno,adcbank_type,adcbank_leadbank,adcbank_asset,adcbank_internalrating,to_char(adcbank_reviewduedate,'dd/mm/yyyy')
+		as adcbank_reviewduedate,
+		adcbank_externalrating_st,adcbank_externalrating_lt,adcbank_accountstatus,adcbank_propexistfb,adcbank_propproposedfb,adcbank_propexistnfb,adcbank_propproposednfb
+		from COMADC_BANKINGDETAILS where adcbank_appno='^'
+	</query>
+	<query code="ins_adcgaurantee">
+		insert into COMADC_GUARANTEECOMMENTS
+		(guarantee_appno,guarntee_comments)values(?,?)
+	</query>
+	<query code="del_adcgaurantee">
+		delete from COMADC_GUARANTEECOMMENTS where guarantee_appno=?
+	</query>
+	<query code="sel_adcgaurantee">
+		select guarantee_appno,guarntee_comments from
+		COMADC_GUARANTEECOMMENTS where guarantee_appno='^'
+	</query>
+	<query code="sel_adccomment">
+		select
+		adccom_appno,adccom_sanctauth,adccom_valueaccount,
+		adccom_presentreq,adccom_delegatedauth from COMADC_COMMENT where
+		adccom_appno='^' 
+	</query>
+
+	<query code="ins_adccomment">
+		insert into COMADC_COMMENT
+		(adccom_appno,adccom_sanctauth,adccom_valueaccount,
+		adccom_presentreq,adccom_delegatedauth) values(?,?,?,?,?)
+	</query>
+
+	<query code="del_adccomment">
+		delete from COMADC_COMMENT where adccom_appno=?
+	</query>
+
+	<query code="ins_adclimitcomment">
+		insert into COMADC_LIMITCOMMENTS
+		(limitcomm_appno,limitcomments)values(?,?)
+	</query>
+	<query code="del_adclimitcomment">
+		delete from COMADC_LIMITCOMMENTS where limitcomm_appno=?
+	</query>
+	<query code="sel_adclimitcomment">
+		select limitcomm_appno,limitcomments from COMADC_LIMITCOMMENTS
+		where limitcomm_appno='^'
+	</query>
+	<query code="sel_adcrecommendation">
+		select
+		adcrecom_appno,adcrecom_orglevel,adcrecom_comments,adcrecom_signatures,adcrecom_refno,
+		to_char(adcrecom_date,'dd/mm/yyyy') as adcrecom_date from
+		COMADC_RECOMMENDATION where adcrecom_appno='^' and
+		adcrecom_orglevel in (^)
+	</query>
+
+	<query code="ins_adcrecommendation">
+		insert into
+		COMADC_RECOMMENDATION(adcrecom_appno,adcrecom_orglevel,adcrecom_comments,adcrecom_signatures)
+		values (?,?,?,?)
+	</query>
+
+	<query code="del_adcrecommendation">
+		delete from COMADC_RECOMMENDATION where adcrecom_appno=? and
+		adcrecom_orglevel=?
+	</query>
+	<query code="del_adhocfincomments">
+		delete from COMADC_FINANCIALCOMMENTS where ADCFINCOM_APPNO =?
+	</query>
+	<query code="ins_adhocfincomments">
+		insert into COMADC_FINANCIALCOMMENTS
+		(ADCFINCOM_APPNO,ADCFINCOM_COMMENTS) values(?,?)
+	</query>
+	<query code="sel_adhocfincomments">
+		select ADCFINCOM_APPNO,ADCFINCOM_COMMENTS from
+		COMADC_FINANCIALCOMMENTS where ADCFINCOM_APPNO='^'
+	</query>
+	<query code="sel_adhocfin">
+		select
+		adcfin_appno,adcfin_slno,adcfin_pretyear,adcfin_lastyear,adcfin_currentyear,adcfin_nextyear,adcfin_desc
+		from COMADC_FINANCIALS where adcfin_appno ='^' order by
+		adcfin_slno
+	</query>
+	<query code="ins_adhocfin">
+		insert into COMADC_FINANCIALS
+		(ADCFIN_APPNO,ADCFIN_SLNO,ADCFIN_PRETYEAR,ADCFIN_LASTYEAR,ADCFIN_CURRENTYEAR,ADCFIN_NEXTYEAR,ADCFIN_DESC)
+		values(?,?,?,?,?,?,?)
+	</query>
+	<query code="del_adhocfin">
+		delete from COMADC_FINANCIALS where ADCFIN_APPNO =?
+	</query>
+	<query code="adc_workflowhistory">
+		select adcmail_fromusrid||'-'||usr1.usr_fname||'
+		'||usr1.usr_lname as fromuser,
+		adcmail_tousrid||'-'||usr2.usr_fname||' '||usr2.usr_lname as
+		touser,adcmail_fromflowpoint,adcmail_toflowpoint,
+		to_char(adcmail_date,'dd/mm/yyyy hh24:mi:ss') as maildate,
+		adcmail_fromusrid, adcmail_tousrid from comadc_mailbox, users
+		usr1,users usr2 where adcmail_appno like '^' and
+		adcmail_fromusrid=usr1.usr_id and adcmail_tousrid=usr2.usr_id
+		order by adcmail_date
+	</query>
+	<query code="sel_adcapplication">
+		select adc_appno, adc_appusrid, adc_holdusrid, adc_processusrid,
+		adc_sanccomments, adc_staus from COMADC_APPLICATIONS where
+		adc_appno= '^'
+	</query>
+	<query code="sel_adcworkflowsel">
+		select prd_flowpoint, wrk_flowname, prd_maxclass,
+		prd_function,stat_data_desc1 from prd_workflow, workflow,
+		static_data where prd_code=(select adc_prdcode from
+		COMADC_APPLICATIONS where adc_appno='^') and prd_flowpoint ^ ^
+		and prd_flowpoint ^ ^ and prd_workid=wrk_flowid and
+		stat_data_id='7' and stat_data_desc=prd_maxclass order by
+		prd_flowpoint
+	</query>
+
+	<query code="adc_workflowcnt">
+		select count(ADCMAIL_FROMFLOWPOINT) from COMADC_MAILBOX where
+		ADCMAIL_APPNO='^' and ADCMAIL_FROMFLOWPOINT=^
+	</query>
+
+	<query code="sel_adcworkflow">
+		select adcmail_toflowpoint, to_char(adcmail_date,'dd/mm/yyyy
+		hh24:mi:ss') as adcmail_date,
+		to_char(prd_duration+adcmail_date,'dd/mm/yyyy') as duedate,
+		prd_maxclass from COMADC_MAILBOX, COMADC_APPLICATIONS,
+		prd_workflow where adcmail_date=(select max(adcmail_date) from
+		COMADC_MAILBOX where adcmail_appno='^') and
+		adcmail_toflowpoint=prd_flowpoint and adcmail_appno=adc_appno
+		and prd_code=adc_prdcode and adc_appno='^'
+	</query>
+
+	<query code="sel_adcappworkflow">
+		select prd_maxclass, to_char(adc_createdate,'DD/MM/YYYY') as
+		createdate, to_char(prd_duration+adc_createdate,'DD/MM/YYYY') as
+		duedate from COMADC_APPLICATIONS, prd_workflow where
+		prd_flowpoint=1 and prd_code=adc_prdcode and adc_appno='^'
+	</query>
+	<query code="sel_adcworkflowpoint">
+		select prd_skip, prd_approval from prd_authority,
+		COMADC_APPLICATIONS where prd_code=adc_prdcode and adc_appno='^'
+	</query>
+
+
+	<query code="adc_insmailbox">
+		insert into COMADC_MAILBOX(adcmail_appno, adcmail_fromusrid,
+		adcmail_tousrid, adcmail_fromflowpoint, adcmail_toflowpoint,
+		adcmail_date) values(?,?,?,?,?,sysdate)
+	</query>
+
+	<query code="upd_adcappholder">
+		update COMADC_APPLICATIONS set
+		adc_holdusrid=?,adc_mailchkstatus='Y' where adc_appno=?
+	</query>
+	<query code="upd_adcappstatus">
+		update COMADC_APPLICATIONS set adc_staus=?, adc_processusrid=?,
+		adc_processdate=to_date(?,'dd/mm/yyyy'), adc_processorgscode=?,
+		adc_sanccomments=? where adc_appno=?
+	</query>
+	<query code="getmaxadcflowpoint">
+		select max(prd_flowpoint) as maxflowpoint from
+		PRD_WORKFLOW,WORKFLOW,COMADC_APPLICATIONS where
+		prd_workid=wrk_flowid and prd_code=adc_prdcode and
+		wrk_flowtype='p' and adc_appno='^'
+	</query>
+	<query code="upd_adcworkflowcloseappln">
+		update COMADC_APPLICATIONS set adc_staus =
+		concat('c',substr(adc_staus,2,2)), adc_closedate=sysdate where
+		adc_appno=?
+	</query>
+	<query code="ins_adcmailcomments">
+		insert into COMADC_MAILCOMMENTS (adcmcom_appno,
+		adcmcom_comments, adcmcom_userid, adcmcom_date, adcmcom_touser,
+		adcmcom_pano) values (?,?,?,sysdate,?,?)
+	</query>
+
+	<query code="sel_adcmailcomments">
+		select adcmcom_appno, adcmcom_comments, adcmcom_userid,
+		to_char(adcmcom_date,'dd/mm/yyyy hh24:mi:ss') as adcmcom_date,
+		adcmcom_touser, user_designation, usr_fname, adcmcom_pano from
+		COMADC_MAILCOMMENTS, USERS where adcmcom_appno='^' and
+		adcmcom_userid=usr_id order by adcmcom_date desc
+	</query>
+	<query code="adcmailboxcount">
+		select count(adc_appno) from COMADC_APPLICATIONS, ORGANISATIONS,
+		COMAPPLICANT where comapp_id=adc_comappid and
+		org_scode=adc_createorgscode and adc_holdusrid='^' and
+		upper(adc_staus) not like 'C_' and adc_mailchkstatus='Y'
+	</query>
+	<query code="adcmailbox">
+		select ADC_APPNO, comapp_companyname, org_name, ADC_STAUS,
+		ADCMAIL_FROMUSRID, to_char(ADCMAIL_DATE,'dd/mm/yyyy') as
+		adcmail_date from comadc_mailbox a, COMADC_APPLICATIONS,
+		comapplicant, organisations where a.ADCMAIL_DATE=(select
+		max(b.ADCMAIL_DATE) from comadc_mailbox b where
+		b.ADCMAIL_APPNO=a.ADCMAIL_APPNO) and
+		a.ADCMAIL_TOUSRID=ADC_HOLDUSRID and a.ADCMAIL_APPNO=ADC_APPNO
+		and comapp_id=ADC_COMAPPID and org_scode=ADC_CREATEORGSCODE and
+		ADC_HOLDUSRID='^' and upper(ADC_STAUS) not like 'C_' and
+		ADC_MAILCHKSTATUS='Y' and ADC_DELFLAG='N'
+	</query>
+	<query code="sel_adcfacilityforsanction">
+		select adcfac_sno, adcfac_id, (select facility_catdesc from
+		facility_master where facility_catid= adcfac_id) as fac_desc,
+		facility_catdesc as facilityhead from facility_master
+		a,comadc_facilities b where b.adcfac_headid = a.facility_catid
+		and b.adcfac_appno ='^'
+	</query>
+	<query code="adc_wc_tl_funded_nonfunded">
+		select facility_catdesc, adcfac_amount, adcfac_margin,
+		adcfac_interest, adcfac_headid,adcfac_id, adcfac_os,
+		adcfac_secvalue, adcfac_sno,adcfac_category,
+		adcfac_months,adcfac_remarks from FACILITY_MASTER a,
+		COMADC_FACILITIES b where b.adcfac_id = a.facility_catid and
+		b.adcfac_appno ='^' and b.adcfac_headid='^' and adcfac_group=0
+		order by adcfac_sno
+	</query>
+	<query code="adc_subfac">
+		select facility_catdesc, adcfac_amount, adcfac_margin,
+		adcfac_interest, adcfac_headid, adcfac_id, adcfac_os,
+		adcfac_secvalue, adcfac_category,adcfac_months,adcfac_remarks
+		from facility_master a, COMADC_FACILITIES b where b.adcfac_id =
+		a.facility_catid and b.adcfac_appno ='^' and adcfac_group='^'
+		order by adcfac_sno
+	</query>
+	<query code="sel_adcsec_details">
+		select sec_appno, sec_srlno, sec_id, sec_desc, sec_value,
+		to_char(sec_valuedate,'dd/mm/yyyy') as sec_valuedate, sec_type,
+		sec_tenor, sec_valuedby, sec_insamt,
+		to_char(sec_insexpdate,'dd/mm/yyyy') as sec_insexpdate,
+		sec_remarks, stat_data_desc as sec_name,sec_facsno from
+		comadc_securities, static_data where stat_data_id(+)=12 and
+		stat_data_desc1(+)=sec_id and sec_appno='^' and
+		upper(sec_type)=upper('^') order by sec_appno,sec_srlno
+	</query>
+
+	<query code="adc_wc_tl_total">
+		select sum(adcfac_amount) as Amount, sum(adcfac_os) as
+		outstanding,sum(adcfac_secvalue) as SECVALUE from
+		COMADC_FACILITIES where adcfac_appno='^' and adcfac_headid='^'
+		and adcfac_group='0'
+	</query>
+	<query code="getadcapp_createdate">
+		select to_char(adc_createdate,'DD/MM/YYYY') as
+		createdate,adc_valuesin from COMADC_APPLICATIONS where
+		adc_appno='^'
+	</query>
+	<query code="sel_adcsec_primarydetails">
+		select sec_appno, sec_srlno, sec_id, sec_desc, sec_value,
+		to_char(sec_valuedate,'dd/mm/yyyy') as sec_valuedate, sec_type,
+		sec_tenor, sec_valuedby, sec_insamt,
+		to_char(sec_insexpdate,'dd/mm/yyyy') as sec_insexpdate,
+		sec_remarks, stat_data_desc as sec_name,sec_facsno from
+		comadc_securities, static_data where stat_data_id(+)=12 and
+		stat_data_desc1(+)=sec_id and sec_appno='^' and
+		upper(sec_type)=upper('^') and sec_facsno ='^' order by
+		sec_appno,sec_srlno
+	</query>
+	<query code="upd_adcrecommendation">
+		update COMADC_RECOMMENDATION set
+		adcrecom_refno=?,adcrecom_date=to_date(?,'dd/mm/yyyy') where
+		adcrecom_appno=?
+	</query>
+	<query code="sel_adc_recommendation">
+		select
+		adcrecom_appno,adcrecom_orglevel,adcrecom_comments,adcrecom_signatures,adcrecom_refno,to_char(adcrecom_date,'dd/mm/yyyy')
+		as adcrecom_date from COMADC_RECOMMENDATION where
+		adcrecom_appno='^'
+	</query>
+	
+	<query code="com_wc_nonfunded_adc">
+		select facility_catdesc, facility_existing, facility_proposed,
+		facility_margin, facility_interest, facility_headid,facility_id,
+		facility_dp, facility_outstanding, security_value,
+		facility_desc, facility_sno, bplr, facility_intadjustment,
+		facility_category, facility_months, facility_intremarks, to_char(facility_osason,'DD/MM/YYYY') as facility_osason from
+		facility_master a, facilities b where b.facility_id =
+		a.facility_catid and b.facility_appno ='^' and
+		b.facility_headid=4 and facility_group=0 and b.facility_existing >0
+	</query>
+
+	<query code="com_wc_funded_adc">
+		select facility_catdesc, facility_existing, facility_proposed,
+		facility_margin, facility_interest, facility_headid,
+		facility_id, facility_dp, facility_outstanding, security_value,
+		facility_desc, facility_sno, bplr, facility_intadjustment,
+		facility_category, facility_months, facility_intremarks, to_char(facility_osason,'DD/MM/YYYY') as facility_osason from
+		facility_master a, facilities b where b.facility_id =
+		a.facility_catid and b.facility_appno ='^' and
+		b.facility_headid=3 and facility_group=0 and b.facility_existing >0
+	</query>
+
+	<query code="com_tl_funded_nonfunded_adc">
+		select facility_catdesc, facility_existing, facility_proposed,
+		facility_margin, facility_interest, facility_headid,
+		facility_id, facility_dp, facility_outstanding, security_value,
+		facility_desc, facility_sno, bplr, facility_intadjustment,
+		facility_category, facility_months, facility_intremarks, to_char(facility_osason,'DD/MM/YYYY') as facility_osason from
+		facility_master a, facilities b where b.facility_id =
+		a.facility_catid and b.facility_appno ='^' and b.facility_headid
+		in('1','2') and facility_group=0 and b.facility_existing >0
+	</query>
+	
+	<query code="WC_FUNDED_TOTAL_adc">
+		select sum(facility_existing) as WC_FUNDED_EXISTING,
+		sum(facility_proposed) as WC_FUNDED_PROPOSED from facilities
+		where facility_appno='^' and facility_headid ='3' and
+		facility_group='0' and facility_existing >0
+	</query>
+
+	<query code="WC_NONFUNDED_TOTAL_adc">
+		select sum(facility_existing) as WC_NONFUNDED_EXISTING,
+		sum(facility_proposed) as WC_NONFUNDED_PROPOSED from facilities
+		where facility_appno='^' and facility_headid ='4' and
+		facility_group='0' and facility_existing >0
+	</query>
+
+	<query code="TL_FUNDED_TOTAL_adc">
+		select sum(facility_existing) as TL_FUNDED_EXISTING,
+		sum(facility_proposed) as TL_FUNDED_PROPOSED from facilities
+		where facility_appno='^' and facility_headid='1' and
+		facility_group='0' and facility_existing >0
+	</query>
+	<query code="selonlyADHOC">
+	select facility_catdesc, facility_existing, facility_proposed,
+        facility_margin, facility_interest, facility_headid,
+        facility_id, facility_dp, facility_outstanding, security_value,
+        facility_desc, facility_sno, bplr, facility_intadjustment,
+        facility_category, facility_months, facility_intremarks, 
+        to_char(facility_osason,'DD/MM/YYYY') as facility_osason from
+        facility_master a, facilities b where b.facility_id =
+        a.facility_catid and b.facility_appno ='^' 
+         and b.facility_existing =0 and facility_category='A' order by facility_sno
+	</query>
+	<query code="com_subfac_adc">
+		select facility_catdesc, facility_existing, facility_proposed,
+		facility_margin, facility_interest, facility_headid,
+		facility_id, facility_dp, facility_outstanding, security_value,
+		facility_desc, bplr, facility_intadjustment, facility_category,
+		facility_months, facility_intremarks, facility_sno from facility_master a, facilities b where
+		b.facility_id = a.facility_catid and b.facility_appno ='^' and
+		facility_group='^' and facility_category='A' and facility_existing=0 order by facility_sno
+	</query>
+	<query code="com_subfac_existing_adc">
+		select facility_catdesc, facility_existing, facility_proposed,
+		facility_margin, facility_interest, facility_headid,
+		facility_id, facility_dp, facility_outstanding, security_value,
+		facility_desc, bplr, facility_intadjustment, facility_category,
+		facility_months, facility_intremarks, facility_sno from facility_master a, facilities b where
+		b.facility_id = a.facility_catid and b.facility_appno ='^' and
+		facility_group='^' and facility_existing >0 order by facility_sno
+	</query>
+	<query code="sel_prd_bankscheme">	
+	select prd_bankscheme from products where PRD_CODE='^'
+	</query>
+	
+	 <query code="select_doc_dynamicmasterbc">
+	   select doc_docuname,doc_id,doc_module,doc_doctype,doc_template,doc_sno,DOC_DYNAMICCONTENT,doc_jspname,DOC_DOCSUBTYPE,to_char(doc_createddate,'dd/mm/yyyy') as doc_createddate
+	   from doc_dynamicmaster where  DOC_DOCUNAME='BCSLBC' and DOC_DOCTYPE='I' and doc_sno= (select max(doc_sno) from doc_dynamicmaster where  DOC_DOCUNAME='BCSLBC' and DOC_DOCTYPE='I')   
+  </query>
+    <query code="select_doc_citybclc">
+   select CITY_ID, CITY_CODE, CITY_NAME, STATE_ID  from LAPS_CITIES where city_code='^'
+</query>
+<query code="select_doc_statebclc">
+select STATE_ID, STATE_CODE, STATE_NAME, STATE_CIBILCODE from LAPS_STATES where STATE_CODE='^'	
+</query>
+<query code="insert_app_docattachbclc">
+	    insert into BANKCERLINE_DOCATTACHMENTS(apdoc_appno,apdoc_doctype,apa_doccode,apa_sno,apa_filename,apa_userid,apa_created_date,APA_DOC_FACSLNO) values(?,'O',?,?,?,?,sysdate,?)
+	</query>
+	<query code="select_app_docattach_maxidbclc">
+	    select nvl(max(apa_sno)+1,1) as apa_sno from BANKCERLINE_DOCATTACHMENTS where apdoc_appno = '^'
+	</query>
+	<query code="select_perapp_docattachbc">
+	    select apa_sno,apa_filename,apa_userid,apa_doccode,APA_GENERATED_URL from BANKCERLINE_DOCATTACHMENTS where apdoc_appno = '^'  and apdoc_doctype = 'O' and apa_doccode = '^' and apa_delflag is null
+	</query>
+	<query code="select_app_docattach_viewbc">
+	    select apa_filename,to_char(APA_CREATED_DATE,'dd/mm/yyyy') as APA_CREATED_DATE from BANKCERLINE_DOCATTACHMENTS where apdoc_appno = '^' and apdoc_doctype = 'O' and apa_doccode = '^' and apa_sno = '^'  and apa_delflag is null
+	</query>
+	
+	<query code="selstatdatabyidexpiredmonth">
+			select stat_data_desc, stat_data_desc1,stat_data_value from static_data where stat_data_id='282' and STAT_DATA_ACTIVE='Y'
+			order by stat_data_desc1
+		</query>
+		
+		<query code="bcloc_commdocumentins">
+			insert into
+			BCLOC_APPDOCUMENTS(apdoc_appno,apdoc_doccode,apdoc_substatus,apdoc_subdate,apdoc_totpages,apdoc_rendate,
+			apdoc_doctype,apdoc_remarks, doc_created_date,APDOC_CreateUSERID,APDOC_FAC_SLNO)
+			values(?,?,?,TO_DATE(?,'DD/MM/YYYY'),?,
+			TO_DATE(?,'DD/MM/YYYY'),?,?,sysdate,?,?)
+		</query>
+		
+		<query code="bcloc_commdocumentupd">
+		update BCLOC_APPDOCUMENTS set apdoc_remarks=?, doc_created_date =
+		TO_DATE(?,'DD/MM/YYYY') ,apdoc_substatus= ? where apdoc_appno=?
+		and apdoc_doccode=?
+	</query>
+	
+	<query code="upd_bcloc_delDocFlag">
+		update BCLOC_APPDOCUMENTS set APDOC_DELFLAG=?,APDOC_DELUSERID=?,APDOC_DELDATE=sysdate where apdoc_appno=? and APDOC_DOCCODE=?
+	</query>
+	<query code="sel_bcloc_documentdetails_postsanc">
+		select STAT_DATA_DESC1 as doc_docname,doc_jspname,doc_doctype,doc_id,APDOC_FAC_SLNO,DOC_DOCSUBTYPE from doc_dynamicmaster d,BCLOC_APPDOCUMENTS,static_data where 
+		doc_id = to_char(apdoc_doccode) and apdoc_appno ='^' and  doc_doctype='O' and  STAT_DATA_DESC=DOC_DOCUNAME and STAT_DATA_ID='191' 
+		and APDOC_DELFLAG is null and doc_modifieddate=(select max(doc_modifieddate) from doc_dynamicmaster where doc_id=d.doc_id) order by APDOC_FAC_SLNO	
+	</query>
+	
+	
+	<query code="sel_bclocdocattachcnt">
+		select count(apdoc_appno) as cnt from BCLOC_APPDOCUMENTS where apdoc_appno = '^' and (apdoc_doctype='O' or apdoc_doctype = '^' )
+		and APDOC_DOCCODE = '^'  and APDOC_DELFLAG is null
+	</query>
+	<query code="delete_perapp_docattachbclc">
+	    update BANKCERLINE_DOCATTACHMENTS set APA_DELFLAG='Y',apa_deluseid=?,apa_deldate=sysdate where apdoc_appno = ? and apdoc_doctype = 'O' and apa_doccode = ? and apa_sno = ? 
+	</query>
+	
+	<query code="select_app_docattach_view_noflagbcloc">
+	    select apa_filename,to_char(APA_CREATED_DATE,'dd/mm/yyyy') as APA_CREATED_DATE from BANKCERLINE_DOCATTACHMENTS where apdoc_appno = '^' and apdoc_doctype = '^' and apa_doccode = '^' and apa_sno = '^'
+	</query>
+	<query code="sel_attacheddocmentsbcloc">
+	   select apdoc_appno from BANKCERLINE_DOCATTACHMENTS where APDOC_APPNO='^' and APA_FILENAME='^'  and APA_DELFLAG is null
+	</query>
+	<query code="selstatdatabyidexpiredmonthexplimit">
+			select stat_data_desc, stat_data_desc1,stat_data_value from static_data where stat_data_id='289' and STAT_DATA_ACTIVE='Y'
+			order by stat_data_desc1
+		</query>
+		<query code="selorgnamedetails12">
+		Select org_code,org_name as BANKERORG_NAME
+     from BANKERCERTIFICATE,organisations where  BANKER_ORGCODE=org_code and BANKER_APPL_NO='^'
+		</query>
+		<query code="delbclocappdocuments">
+		delete from BCLOC_APPDOCUMENTS where apdoc_appno = ?
+		</query>	
+		<query code="delbclocbankcerlinedocattachments">
+		delete from BANKCERLINE_DOCATTACHMENTS where APDOC_APPNO = ?
+		</query>
+		<query code="sel_bankerheadertag">
+		select BANKER_APPL_NO,BANKER_APPID,BANKER_APPLICANT_NAME,BANKER_APPLNHOLDER,BANKER_STATUS from BANKERCERTIFICATE,perapplicant where BANKER_APPID=perapp_id  and perapp_renew='n'  and  perapp_id='^' and banker_brief_workorder='^'
+		</query>
+		<query code="upd_bcloc_delDocFlagall">		
+		update BANKCERLINE_DOCATTACHMENTS set  APA_DELFLAG='Y',APA_DELUSEID=?,APA_DELDATE=sysdate  where apdoc_appno=? and APA_DOCCODE=? and  APA_FILENAME=?
+	</query>
+	<query code="sel_bclocdocattachcntdel">
+		select count(apdoc_appno) as cnt from BANKCERLINE_DOCATTACHMENTS where APDOC_APPNO = '^' and APDOC_DOCTYPE = 'O' 
+		and APA_DOCCODE = '^'  and APA_DELFLAG is null
+	</query>
+	<query code="delbclocappdocumentsbyall">
+		delete from BCLOC_APPDOCUMENTS where apdoc_appno = ? and apdoc_DOCCODE=?
+		</query>
+		<query code="sel_expirydatedual">
+		select to_char(add_months(^,^),'dd/mm/yyyy') as expiry_date from dual
+		</query>
+		<query code="sel_expirydatedualdatediff">		
+		select (trunc(to_date(^,'dd/mm/yyyy'))-(to_date(^, 'dd/mm/yyyy'))) as datediff   from dual 
+		</query>		
+		<query code="upd_bcloc_delDocFlagall1">
+		update BANKCERLINE_DOCATTACHMENTS set  APA_DELFLAG='Y',APA_DELUSEID=?,APA_DELDATE=sysdate  where apdoc_appno=? and APA_DOCCODE=? and  APA_FILENAME=?
+	</query>
+	<query code="sel_expirydatedualnew">
+	 select /*+ cursor_sharing_exact */to_char(nvl(to_date((to_char(to_date(^,'dd/mm/yyyy'),'dd')||'/'||to_char(add_months(to_date(^,'dd/mm/yyyy'),^),'mm/yyyy'))
+DEFAULT NULL ON CONVERSION ERROR,'dd/mm/yyyy'), LAST_DAY(add_months(to_date(^,'dd/mm/yyyy'),^))),'dd/mm/yyyy') as expiry_date from dual
+	</query>
+	<query code="sel_bclocdiscode">
+	select STATE_CODE,DISTRICT_CODE,DISTRICT_DESC,DISTRICT_ACTIVE from DISTRICT_MASTER where DISTRICT_CODE='^'
+	</query>
+	<query code="sel_staticcodesanctionfor">
+	select stat_data_desc, stat_data_desc1,stat_data_value from static_data where stat_data_id='244' and STAT_DATA_ACTIVE='Y' and stat_data_desc='^'
+			order by stat_data_desc1
+	</query>
+	<query code="sel_docattachstatechk">
+	update bankercertificate set banker_docAttachStatus='Y' where BANKER_APPL_NO=?
+	</query>
+	<query code="selbclocorghead">
+	
+	select ORG_NAME, USR_FNAME as ORG_HEAD,(select CITY_NAME From laps_cities where ACTIVE_FLAG='E' and CITY_CODE=ORG_CITY) as ORG_CITY,ORG_PHONE,USR_EMAILID,ORG_URL from ORGANISATIONS,USERS where ORG_NAME='^'and USR_ID=ORG_HEAD
+	
+	</query>
+	<query code="sel_docattachstatechkno">
+	update bankercertificate set banker_docAttachStatus='',banker_doc_othstdfmt='' where BANKER_APPL_NO=?
+	</query>
+	
+	<query code="sel_docattachstatechknootherfrmt">
+	update bankercertificate set banker_doc_othstdfmt='Y' where BANKER_APPL_NO=?
+	</query>
+	<query code="sel_bcloc_documentdetails_postsancothstdfrmt">
+	       select doc_id,STAT_DATA_DESC1 as docdesc,to_char(doc_createddate,'dd/mm/yyyy') as doc_createddate,STAT_DATA_ACTIVE
+           from doc_dynamicmaster d,BCLOC_APPDOCUMENTS,static_data where STAT_DATA_DESC=DOC_DOCUNAME and STAT_DATA_ID='191' and stat_data_active='Y' 
+           and apdoc_appno ='^' and doc_doctype='O' and DOC_MODULE like '%bcloc%'   and doc_modifieddate=(select max(doc_modifieddate)
+           from doc_dynamicmaster where DOC_DOCUNAME=d.DOC_DOCUNAME)	
+	</query>
+	<query code="selbclocothdocattachNo">
+	select BANKER_APPL_NO,BANKER_DOCUMENTATTACH_TYPE, BANKER_DOCATTACHSTATUS, BANKER_DOC_OTHSTDFMT from bankercertificate where 
+BANKER_APPL_NO='^' and 
+( to_date(to_char(BANKER_DATE,'dd/mm/yyyy'),'dd/mm/yyyy')  &gt;= to_date('03/02/2023','dd/mm/yyyy') or
+to_date(to_char(BANKER_APPROVE_DATE,'dd/mm/yyyy'),'dd/mm/yyyy')  &gt;= to_date('03/02/2023','dd/mm/yyyy')) 
+</query>
+<query code="bclocnatureofact">
+select KYC_KYCACTIVITY from applicant_kycnorms where KYC_CUSTID='^'
+</query>
+ <query code="sel_bankercertificate_orgbclc">
+		select  USR_ID,USR_FNAME,usr_department,USR_FUNCTION,
+		USR_CLASS,ORG_CODE,substr(ORG_CODE,0,6) as orgcode,ORG_LEVEL 
+		from users,ORGANISATIONS where USR_ORGCODE=ORG_CODE and  USR_ID='^' 
+		  and usr_avail='a'
+	</query>
+	
+	 <query code="sel_bankercertificate_org12bclc">
+		select  USR_ID,USR_FNAME,usr_department,USR_FUNCTION,
+		USR_CLASS,ORG_CODE,substr(ORG_CODE,0,6) as orgcode 
+		from users,ORGANISATIONS where USR_ORGCODE=ORG_CODE  and USR_ID='^' 
+		 and usr_avail='a'
+	</query> 
+
+	<query code="sel_bankercertificate_org1bclc">
+		select  USR_ID, USR_ORGCODE,USR_CLASS,ORG_LEVEL 
+		from users,ORGANISATIONS where USR_ORGCODE=ORG_CODE and  USR_ID='^' 
+		 and usr_avail='a' 
+	</query>
+	
+	<query code="sel_bankercertificate_org1bclcbran">
+		select  USR_ID, USR_ORGCODE,USR_CLASS,ORG_LEVEL 
+		from users,ORGANISATIONS where USR_ORGCODE=ORG_CODE and  USR_ID='^' and (usr_class >=85 or usr_class=75)
+		 and usr_avail='a' and ORG_LEVEL in ('A')  
+	</query>
+	<query code="sel_bankercertificate_org1bclcotherthanbran">
+		select  USR_ID, USR_ORGCODE,USR_CLASS,ORG_LEVEL 
+		from users,ORGANISATIONS where USR_ORGCODE=ORG_CODE and  USR_ID='^' and (usr_class >=130)
+		 and usr_avail='a' and ORG_LEVEL  in ('R','C','D')  
+	</query>
+	<query code="ins_BCLOC_HISTORY">
+	insert into BCLOC_HISTORY (BCLOC_APPNO,BCLOC_APPID,BCLOC_USR_ID,BCLOC_USR_CLASS,BCLOC_VIEW_FLAG,BCLOC_PRINT_FLAG,
+BCLOC_DATETIME) values(?,?,?,?,?,?,sysdate)  
+</query>
+</sql>
+
