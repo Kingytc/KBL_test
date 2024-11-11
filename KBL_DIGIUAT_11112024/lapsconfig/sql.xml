@@ -39120,7 +39120,10 @@ CG_NEW_UNIT,CG_NEW_UNIT_WO,CG_MSE_UNIT,CG_MSE_UNIT_WO,CG_MSMED,CG_ARTISAN_CC,CG_
 		SEC_PL_SEARCHFROM_PROP, SEC_PL_PERIOD_EC)
 		values(?,?,to_date(?,'dd/mm/yyyy'),to_date(?,'dd/mm/yyyy'),to_date(?,'dd/mm/yyyy'),?,?,?,?,?)
 	</query>
+<<<<<<<< HEAD:KBL_DIGIUAT_11112024/lapsconfig/sql.xml
 
+========
+>>>>>>>> 825536512600e46edca496e789e3df238cba34a6:KBL_DIGIUAT_05112024/lapsconfig/sql.xml
 	<query code="sel_cbsIdCreation">
 		select PERAPP_CBSID,p.PERAPP_TITLE, p.PERAPP_FNAME,
 		p.PERAPP_DOB,PERAPP_PERM_ADDRESSCHANGE_FLAG,
@@ -47350,7 +47353,10 @@ FACILITY_APPNO=demo_appno and DEMO_COMAPPNEWID=perapp_id and perapp_id=CON_APPID
 		update app_revalidation set
 		app_status=? where app_no=?
 	</query>
+<<<<<<<< HEAD:KBL_DIGIUAT_11112024/lapsconfig/sql.xml
 
+========
+>>>>>>>> 825536512600e46edca496e789e3df238cba34a6:KBL_DIGIUAT_05112024/lapsconfig/sql.xml
 	<query code="Sel_SecID_PS">
 		SELECT CUS_SEC_NETSECURITY FROM CUS_SECURITIES cs WHERE cs.CUS_SEC_ID='^'
 	</query>
@@ -47361,9 +47367,12 @@ FACILITY_APPNO=demo_appno and DEMO_COMAPPNEWID=perapp_id and perapp_id=CON_APPID
 		UPDATE APPLICATIONS a SET a.APP_DMSDOC_FLAG=? WHERE a.APP_NO=?
 	</query>
 	
+<<<<<<<< HEAD:KBL_DIGIUAT_11112024/lapsconfig/sql.xml
 	<query code="get_cbsidcorpagri">
 	 select distinct(perapp_cbsid) as perapp_cbsid from com_companydetails,perapplicant where com_compdtappno='^' and perapp_id=com_compdtappid
 	union
 	 select distinct(perapp_cbsid) as perapp_cbsid from COM_DEMOGRAPHICS,PERAPPLICANT where DEMO_COMAPPNEWID=PERAPP_ID and DEMO_APPNO='^'
 	</query>
+========
+>>>>>>>> 825536512600e46edca496e789e3df238cba34a6:KBL_DIGIUAT_05112024/lapsconfig/sql.xml
 </sql>
