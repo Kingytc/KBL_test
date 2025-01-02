@@ -1,0 +1,15 @@
+<query code="sel_digidocappdocuments">
+
+              select d.APDOC_EXTAPPL_LEADNUMBER from  APPDOCUMENTS d where APDOC_APPNO='^' and
+
+                             d.APDOC_EXTAPPL_LEADNUMBER IS NOT NULL
+
+              </query>
+
+              <query code="sel_digidocattachments">
+
+              select APA_LEAD_NUMBER from APP_DOCATTACHMENTS d where APDOC_APPNO='^' and
+
+                             d.APA_LEAD_NUMBER IS NOT NULL
+
+              </query>
