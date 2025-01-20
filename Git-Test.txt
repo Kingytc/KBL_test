@@ -1,0 +1,3 @@
+select PRD_CODE from PRODUCTS where PRD_WHTDIGIPRD='Y' and PRD_TYPE='pJ' and
+		10000.0 between prd_rng_from and prd_rng_to and PRD_REPAYTYPE like '%12%' and PRD_STOP='n' and prd_renew='n' and PRD_BANKSCHEME='095' 
+		order by PRD_INTRO_DATE desc
