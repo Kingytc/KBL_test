@@ -1,0 +1,633 @@
+http://localhost:8188/laps/rest/services/CustLarPro/
+
+{
+    "inwarddigiappno": "2223TW000001",
+    "solid": "981",
+    "larDetails": [
+        {
+            "inwardsector": "p",
+            "inwardcreatedon": "03-07-2024",
+            "inwardappliedon": "03-07-2024",
+            "inwardcustname": "RAJIV SANJAY WADHWA",
+            "inwardborrowertype": "E",
+            "inwardcbscustid": "353113955",
+            "inwardadd1": "22 SHUBHSONAL SOCIETY DCABIN I O C ROAD",
+            "inwardadd2": "ABARMATI",
+            "inwardcity": "AHM",
+            "inwardstate": "GJ",
+            "inwardzipcode": "380019",
+            "inwardphone": "",
+            "inwardmobile": "9925063010",
+            "inwardemail": "k11115@ktkbank.com",
+            "inwarddob": "31-AUG-92",
+            "inwardpantan": "IIRPM6212B",
+            "inwardpurpose": "PERSONAL PURPOSE",
+            "inwardtermloanamt": "25000",
+            "inwarddocreceivedon": "03-07-2024",
+            "inwarddocreceived": "Y",
+            "inwardapplnprocessat": "1",
+            "inwardorgscode": "981",
+            "inwardusrid": "SYSUSR",
+            "inwardvaluesin": "A",
+            "inwardmodifiedby": "",
+            "inwardmodifieddate": "",
+            "inwardappliedfor": "0",
+            "inwardproptype": "C",
+            "inwarddist": "570",
+            "inwardappstatus": "1",
+            "inwardrejreason": "",
+            "inwardschemedesc": "o",
+            "inwardbankscheme": "095",
+            "inwardgovtspons": "2",
+            "inwardcanvassedbystaff": "NP",
+            "inwardborrowerstatus": "N",
+            "inwleadno": "",
+            "inwardexternalappflag": "Y",
+            "inwardaddresschangeflag": "N",
+            "inwardscheme": "",
+            "inwarddigiappno": "2223TW000001",
+            "inwardleadgenby": "",
+            "inwardleadregion": "",
+            "inwardagentid": "",
+            "inwardconvertedby": "",
+            "inwardstaffid": "",
+            "inwardschemeType": "",
+            "inwardsopnagency": "OTHERS",
+            "inwardotheragency": "",
+            "inwardsubsAmount": "",
+            "inwardsubsdType": ""
+        }
+    ],
+    "customerDetails": [
+        {
+            "demographics": [
+                {
+                    "perappId": "",
+                    "perappCbsid": "353113955",
+                    "perappTitle": "MR",
+                    "perappFname": "RAJIV SANJAY WADHWA",
+                    "perappLname": "ANUPA ",
+                    "perappConstitution": "01",
+                    "perappDob": "30-APR-86",
+                    "perappPanno": "IIRPM6212B",
+                    "perappSex": "M",
+                    "perappMarstat": "MARID",
+                    "perappStatus": "001",
+                    "perappTaxslab": "TDSGE",
+                    "perappEmployment": "11",
+                    "perappBank": "1",
+                    "perappBanksince": "03-AUG-23",
+                    "perappSatisfactory": "Y",
+                    "perappRelationBankstaff": "001",
+                    "perappIntrotype": "",
+                    "perappAppdate": "16-MAY-24",
+                    "perappBranchcode": "981",
+                    "perappConstitutionnew": "01",
+                    "perappExtnappl": "Y",
+                    "perappAddresschangeFlag": "N",
+                    "perappPanFlag": "N",
+                    "perappFiAddressFlag": "N",
+                    "perappFiEmpFlag": "N",
+                    "perappFiBankStatFlag": "N",
+                    "perappEmandateFlag": "N",
+                    "perappEmanBankAcc": "",
+                    "perappEmanBankName": "",
+                    "perappCbsCustFlag": "",
+                    "perappIstatus": "099",
+                    "perappOccupation": "0",
+                    "perappBloodRelation": "0",
+                    "perappTradefinance": "N",
+                    "perappPagestatus": "Y",
+                    "perappProfilestatus": "Y",
+                    "perappCbsstatus": "Y",
+                    "perappPermAddressChangeFlag": "",
+                    "perappKycpendFlag": "N",
+                    "perappFipendFlag": "N",
+                    "perappEmanpendFlag": "N",
+                    "perappFatname": "SANYASI RAJU",
+                    "perappItrFlag": "N",
+                    "perappBusinessProofFlag": "N",
+                    "perappOfficeAddressFlag": "N",
+                    "perappRenew": "n",
+                    "perappInroname": "",
+                    "perappIntrostatus": "",
+                    "perappNetworth": "100000",
+                    "perappProformaInvoice": "",
+                    "perappResidenceProof": "",
+                    "perappNetworthason": "16-MAY-24",
+                    "perappUdyamregno": "",
+                    "perappSalesTurnOver": "50000",
+                    "perappSalesTurnOverDate": "16-MAY-24",
+                    "perappCriteriaSalesTernOver": "003",
+                    "perappMsmeClassification": "",
+                    "perappCertificationDate": "",
+                    "perappAadhaar": "7947XXXX2425"
+                }
+            ],
+            "indinfo": [
+                {
+                    "indinfoResidentstatus": "N",
+                    "indinfoReligion": "1",
+                    "indinfoCaste": "003",
+                    "indinfoDependentschild": "0",
+                    "indinfoDependentsothers": "0",
+                    "indinfoEarningmember": "0",
+                    "indinfoFamilyincome": "0",
+                    "indinfoPhysicallychallanged": "N",
+                    "indinfoBlind": "N",
+                    "indinfoGuardianaddress": "",
+                    "indinfoStaff": "01",
+                    "indinfoEduQual": "03",
+                    "indinfoSpouseName": "NANDINI",
+                    "indinfoMotherName": "PRATHIMA",
+                    "indinfoMinority": "N"
+                }
+            ],
+            "commdetails": [
+                {
+                    "conComAddR1": "MAVINAHALLI KANATHURU POST DABBEGHATTA",
+                    "conComAddR2": "HOBLI TURUVEKERE TALUK",
+                    "conComCity": "TIPTU",
+                    "conComDist": "854",
+                    "conComstate": "KA",
+                    "conComCountry": "IN",
+                    "conComZip": "572224",
+                    "conPermAddR1": "MAVINAHALLI KANATHURU POST DABBEGHATTA",
+                    "conPermAddR2": "HOBLI TURUVEKERETALUK",
+                    "conPermCity": "TIPTU",
+                    "conPermDist": "854",
+                    "conPermState": "KA",
+                    "conPerCountry": "IN",
+                    "conPermZip": "563101",
+                    "conResType": "2",
+                    "conYears": "3~0",
+                    "conPermis": "2",
+                    "conStatus": "Y",
+                    "conMobile": "8105xx8807",
+                    "conEmail": "test@gmil.com"
+                }
+            ],
+            "kycnorms": [
+                {
+                    "kycOccupationCode": "101",
+                    "kycIdProofType": "ADHAAR",
+                    "kycIdProofRee": "B79E0BFFBCCF1AEB6B2",
+                    "kycRisk": "1",
+                    "kycResiProofType": "RP004",
+                    "kycResiIdRefno": "B79E0BFFBCCF1AEB6B2F",
+                    "kycActivity": "N",
+                    "kycDocDate": "16-MAY-24",
+                    "kycPagestatus": "Y",
+                    "kycKycactivity": "BUSINESSMAN",
+                    "kycIdValid": "16-AUG-29"
+                }
+            ],
+            "rating": [
+                {
+                    "rattype": "Y",
+                    "ratstatus": "2"
+                }
+            ],
+            "cibil": [
+                {
+                    "cibilratstatus": "Y",
+                    "cibilscore": "-1",
+                    "cibildetails": "CIBILSCORE",
+                    "cibilsmacategory": "N",
+                    "crifRefered": "N",
+                    "crifautoupdate": "N",
+                    "cibilautoupdate": "N",
+                    "crifScore": "",
+                    "crifDetails": "",
+                    "crifDate": "",
+                    "cibilreporteddate": "16-MAY-24"
+                }
+            ],
+            "incomedetails": [
+                {
+                    "perincType": "2",
+                    "perincmonsalary": "0",
+                    "perinctakehome": "0",
+                    "perincyearsalary": "0",
+                    "perincproof": "2",
+                    "perincYear1Income": "600000",
+                    "perincIncSupportDoc": "D",
+                    "perincPageStatus": "Y",
+                    "perincAppLNT": "A",
+                    "perincOtherIncome": "0",
+                    "perincRent": "0",
+                    "perincagriculture": "0",
+                    "perincsecincome": "0",
+                    "perincautoloanexp": "0",
+                    "perincrentexp": "0",
+                    "perincotherexp": "0",
+                    "perincothers": "0",
+                    "perincdomesticexp": "0",
+                    "perappactualincome": "600000",
+                    "perincyearend1": "31-MAR-24",
+                    "perincitrdate1": "17-MAY-24",
+                    "perincYearEnd2": "18-MAR-23",
+                    "perincITRDate2": "19-MAY-23",
+                    "perincYear2Income": "500000"
+                }
+            ],
+            "employerdetails": [
+                {
+                    "perempName": "",
+                    "perempAddress1": "",
+                    "perempCity": "",
+                    "perempState": "",
+                    "perempZip": "",
+                    "perempPhone": "",
+                    "perempEmpno": "NA",
+                    "perempExpinyrs": "",
+                    "perempEstablish": "16-05-2024",
+                    "perempRetdate": "01-01-2098",
+                    "perempConfemp": "1",
+                    "perempListcomp": "1",
+                    "perempReceipt": "",
+                    "perempPagestatus": "Y",
+                    "perempApplnt": "",
+                    "perincServleftmon": "8",
+                    "perempServleft": "",
+                    "perempAddress2": "",
+                    "perempAddress3": ""
+                }
+            ],
+            "companyinfo": [
+                {
+                    "cominfoCommencementDate": "30-APR-86",
+                    "cominfoEmployeesAsonDate": "",
+                    "cominfoGSTIN": "Not Applicable",
+                    "cominfoGSTINRReg": "N"
+                }
+            ],
+            "agriland": [
+                {
+                    "landAcreage": "",
+                    "landSurvey": "",
+                    "landOwnedLeased": "",
+                    "landFarmercategory": "",
+                    "landLLFType": ""
+                }
+            ]
+        }
+    ],
+    "proposalDetails": [
+        {
+            "applicationBranch": "981",
+            "customerID": "353113955",
+            "amountRequested": "3000",
+            "repaymentType": "12",
+            "prdcatid": "",
+            "scheme": "095",
+            "loanType": "PS",
+            "cbsaccno": "0981792400000112",
+            "perdemographics": [
+                {
+                    "demotype": "a",
+                    "demorelation": "",
+                    "demoincludeincome": "2",
+                    "demooldappid": "",
+                    "democbsrelationtype": "",
+                    "demodocprint": "a"
+                }
+            ],
+            "loandetails": [
+                {
+                    "loanmodintrate": "0",
+                    "loanintrate": "0",
+                    "loanamtreqd": "3000",
+                    "loancostloanprd": "0",
+                    "loanrecmdamt": "3000",
+                    "loanreqterms": "24",
+                    "loaninttype": "Fixed",
+                    "loanpurposeofloan": "PERSONAL CONSUMPTION",
+                    "loanfiledon": "24-MAY-24",
+                    "loanrepaymenttype": "12",
+                    "loanprofee": "0",
+                    "loanreceivedate": "24-MAY-24",
+                    "loanmodeofpay": "N",
+                    "loangovt": "2",
+                    "loantakeover": "N",
+                    "loanemi": "",
+                    "loancreateddate": "24-MAY-24",
+                    "loanmetlifepremiumamt": "0",
+                    "loanfileno": "05370001",
+                    "loanmclrtabcode": "ZERO",
+                    "loanmclrtype": "",
+                    "loandigitotprocessingfee": "0",
+                    "loandigiprocessingfeepaid": "0",
+                    "loancatloanpurpose": "",
+                    "loanageofveh": "0",
+                    "loanbaserate": "7.11",
+                    "loanbusstatval": "0",
+                    "loancreditrskval": "0",
+                    "loaninterestcharged": "1",
+                    "loanintcalcmode": "C",
+                    "loanmargin": "0",
+                    "loancfrverified": "NA",
+                    "loancfrborname": "S",
+                    "loancersaicheck": "NA",
+                    "loaninscompanyname": "NC",
+                    "loanpremiumtenor": "0",
+                    "loanpremiumloanamount": "0",
+                    "loanoperativeaccno": "",
+                    "loanpertainsbranch": "981",
+                    "loandigimaxemi": "125",
+                    "govtscheme": "",
+                    "loansponseragency": "",
+                    "loanagencyname": "",
+                    "loansub": "",
+                    "loansubsidytype": "",
+                    "loandigideviation": "N",
+                    "loandigiresidual": "",
+                    "digideviationroipenalty": "",
+                    "digideviationroiconc": "",
+                    "digiappno": "",
+                    "loanecsbankname": "",
+                    "loanecsaccounttype": "",
+                    "loanecsoperaccnum": "",
+                    "loanecsathunmode": "",
+                    "loanecsifsccode": "",
+                    "loanupfrontfee": "",
+                    "loanroitype": "O",
+                    "loandocrecvd": ""
+                }
+            ],
+            "perloansecure": [
+                {
+                    "loannoofinstallment": "0",
+                    "loanperiodicity": "m",
+                    "loansecure": "u",
+                    "loansecureamount": "0",
+                    "loanservised": "s"
+                }
+            ],
+            "cussecurities": [
+                {
+                    "cussectype": "1",
+                    "cussecclassification": "25",
+                    "cussecalreadycharged": "N",
+                    "cussecnatureofcharge": "0",
+                    "cussecvaluername": "",
+                    "cusvalsubmitteddate": "",
+                    "cusvalrecvdate": "",
+                    "cussecvaluationdate": "",
+                    "cussecsecuritydescription": "Clean Security",
+                    "cusseccollateralstartdate": "24-MAY-24",
+                    "cusseccollateralenddate": "24-MAY-26",
+                    "cussectotalsecvalue": "0",
+                    "cussecnetsecurity": "0",
+                    "cussecstatusflag": "Y",
+                    "cusreleaseflag": "N",
+                    "cusseccreatedby": "SYSUSR",
+                    "cusseccreatedbranch": "",
+                    "cusseccreatedon": "24-MAY-24"
+                }
+            ],
+            "cussecurityownership": [
+                {
+                    "cusownersecurityid": "",
+                    "cusownerlapsid": "2322324",
+                    "cusownersno": "1"
+                }
+            ],
+            "bir": [
+                {
+                    "birflag": "N",
+                    "bircharges": "0"
+                }
+            ],
+            "securitydetailsdigi": [
+                {
+                    "appsecsecid": "",
+                    "appsecfacsno": "1",
+                    "appseccustomerid": "",
+                    "appsecsecurityvalue": "0",
+                    "appsecresidualvalue": "0",
+                    "appsecfactype": "F",
+                    "appsecfacnature": "",
+                    "appsecsecuritytype": "1",
+                    "appsecloanamt": "25000",
+                    "appsecoutstandamt": "25000",
+                    "appsecunsecportion": "1",
+                    "appsecapplicant": "",
+                    "appsecmargin": "0",
+                    "appsecfacid": "",
+                    "appsecloantype": "P",
+                    "appseciscollateral": "",
+                    "appsecexisting": "",
+                    "appsecattached": "A",
+                    "appsecshow": "Y",
+                    "appsecreleaseflag": "",
+                    "appsecborrowerid": "",
+                    "appsecsecutype": "F",
+                    "appsecsharecnt": "",
+                    "appsecfreeze": "Y"
+                }
+            ],
+            "misappdetails": [
+                {
+                    "apptotlim": "25000",
+                    "apptotlimser": "0",
+                    "apptotlimagri": "0",
+                    "appwhetherrestructure": "N",
+                    "appwhetherservice": "N",
+                    "appresunder": "",
+                    "appsettlementno": "",
+                    "appsettlementdate": "",
+                    "appoldfacid": "",
+                    "appresreason": "",
+                    "appcity": "TIPTU",
+                    "appdistrict": "854",
+                    "appstate": "KA",
+                    "appplace": "2",
+                    "apprepayment": "N",
+                    "appsourceofrepay": "",
+                    "appguarantee": "00",
+                    "appguaranteeamt": "0",
+                    "appwhethernewfac": "",
+                    "appcommencementdate": "",
+                    "appactivitycode": "150509",
+                    "appactivitysno": "1704",
+                    "appmainactivity": "15",
+                    "appsubactivity": "05",
+                    "apppurpose": "09_1704",
+                    "appbsrcode": "95019",
+                    "appbsr1code": "879",
+                    "appindustrytype": "",
+                    "appassetclassifcation": "1",
+                    "appdispscreen": "",
+                    "appfacilitysno": "1",
+                    "appsharebroker": "0",
+                    "appmisdate": "06-JUL-24",
+                    "misappdataflag": "Y"
+                }
+            ],
+            "misappdisplayscreen": [
+                {
+                    "apptotland": "0",
+                    "apptotirrigatedland": "0",
+                    "apptotnonirrigatedland": "0",
+                    "apptotcultivatedland": "0",
+                    "apptotnoncultivatedland": "0",
+                    "appfarmercategory": "",
+                    "appwhethercropins": "N",
+                    "appwhetherkrishicard": "N",
+                    "appkrishicardno": "",
+                    "appwhetherpais": "",
+                    "apppremiumamt": "0",
+                    "appnomineename": "",
+                    "appnomineeage": "",
+                    "appnomineerelation": "",
+                    "appclaimdet": "0.00",
+                    "apptotfinancialoutlays": "0",
+                    "appindividualgrp": "",
+                    "appmargin": "",
+                    "appplantval": "",
+                    "appindname": "",
+                    "appwhetheraccdep": "",
+                    "appnoofunits": "0",
+                    "appequipval": "",
+                    "appfacilitysno": "1",
+                    "appborrowerlending": "0",
+                    "appmeritoriousstatus": "N",
+                    "appcrepercnt": "0.00",
+                    "appsocialinfra": "0",
+                    "appagrianciactivity": "0",
+                    "apprenewenergy": "0",
+                    "apprenewenergyindv": "0",
+                    "appagriinfra": "0",
+                    "appsaleturnover": "",
+                    "appsalesturnoverdate": "",
+                    "appcriteriasalesturnover": "",
+                    "appinvestmentdate": "",
+                    "appcriteriainvestment": "",
+                    "appministryindustry": "",
+                    "appcarpetarea": "",
+                    "appfloorarea": "",
+                    "appareaindvhouse": "",
+                    "appproposedloanshg": "",
+                    "appdwellingunit": ""
+                }
+            ],
+            "misappclassification": [
+                {
+                    "appagriculture": "",
+                    "appsector": "02",
+                    "appsubsector": "68",
+                    "appsensitivesector": "100",
+                    "appweakersec": "",
+                    "apptwentypointpgm": "14",
+                    "appinfrastrcode": "",
+                    "appgovtannouncescheme": "",
+                    "appmismastersno": "47306",
+                    "appfacilitysno": "1"
+                }
+            ],
+            "percuscbsaccountdata": [
+                {
+                    "freecode6": "002",
+                    "freecode7": "3",
+                    "freecode8": "4",
+                    "modeofoperation": "01",
+                    "drawingpwrind": "D",
+                    "drawingpwr": "25000",
+                    "accthandoffcompleteflag": "N",
+                    "natureofadv": "03",
+                    "typeofadv": "20",
+                    "modeofadv": "01",
+                    "purposeofadv": "10",
+                    "freecode3": "999",
+                    "loandisbbranch": "981",
+                    "securitycode": "",
+                    "intratefreq": "M",
+                    "freecode7fincode": "999",
+                    "freecode8fincode": "999",
+                    "lbrcode": "046",
+                    "facilitysno": "1",
+                    "cergistofsecuritues": "Clean Security",
+                    "facilityschemecode": "CLUPI",
+                    "facilityglsubheadcode": "70054",
+                    "lapscode1": "99",
+                    "lapscode2": "99",
+                    "lapscode3": "99"
+                }
+            ],
+            "appraisalsanction": [
+                {
+                    "apprisaldate": "24-MAY-24",
+                    "apprisedby": "SYSUSR",
+                    "sanctionamount": "25000",
+                    "appraisalflag": "Y",
+                    "appraisalsanclevel": "02",
+                    "appraisalsancauth": "51",
+                    "appraisaldepartment": "017",
+                    "appraisalbranch": "CLPSC"
+                }
+            ],
+            "percomments": [
+                {
+                    "cmtpgtype": "LoanProd",
+                    "cmtcomments": "",
+                    "cmtintercomments": ""
+                }
+            ],
+            "financialcomments": [
+                {
+                    "fincmano": "",
+                    "fincmatitle": "repaycomment",
+                    "fincomments": "ON DEMAND",
+                    "finvalue": "",
+                    "fincomments1": "",
+                    "finfacility": "1",
+                    "finstagewiserelease": "N"
+                }
+            ],
+            "comdelegation": [
+                {
+                    "comuserid": "SYSTEM USER",
+                    "comuserdes": "099",
+                    "comsno": "1",
+                    "comuser": "SYSUSR",
+                    "comdetails": "A",
+                    "comdate": "24-MAY-24"
+                }
+            ],
+            "digiratingscore": [
+                {
+                    "commercialbureauscore": "",
+                    "consumerindscore": "-1",
+                    "consumerpartyscore": "",
+                    "odaccountscore": "",
+                    "currentaccountscore": "-1",
+                    "fsascore": "-1",
+                    "bandrating": "",
+                    "bandpath": "",
+                    "kbrating": "KB1",
+                    "financialtype": "NA",
+                    "financialyear": "NA"
+                }
+            ]
+        }
+    ]
+}
+
+
+
+
+https://lapsuat.ktkbank.com:9448/laps/rest/services/accOpeningTriggerService/
+
+{
+    "lapsProposalNumber": "09810020321",
+    "uniquerefno": "57012ea9-c35c-",
+    "valueDate": "25/05/2024",
+    "limexpdate": "25/05/2027",
+    "loanpaperdate": "25/05/2024",
+    "flowstartdate": "02/07/2024",
+    "lrfreqstartdate": "2",
+    "nextintdmddate": "02/07/2024",
+    "intfreqstartdddr": "31",
+    "nextintrundatedr": "02/07/2024"
+}
