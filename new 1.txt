@@ -1,0 +1,3 @@
+select usr_grpid,USR_ID,usr_department,USR_FNAME,USR_FUNCTION,USR_CLASS,(select  CBS_STATIC_DATA_DESC from  CBS_STATICDATA where  CBS_STATIC_DATA_ID='27' and  CBS_STATIC_DATA_CODE=user_designation) as 
+		user_designation,(select ORG_SCODE from organisations where ORG_LEVEL = 'C')as ORG_SCODE from users where USR_ORGCODE in (select ORG_CODE from ORGANISATIONS where ORG_CODE like '001000000000000')  
+		and usr_avail='a' and USR_DEPARTMENT is not null
