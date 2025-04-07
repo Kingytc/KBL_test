@@ -1,0 +1,35 @@
+selsecpropdet^23350521127069]
+
+            Select sec_propertytype, sec_surveyno, sec_plotno,
+            sec_totalarea, sec_measurement, sec_extentofbuilding,
+            sec_extentofground, sec_extentofland,
+            Sec_Year,Sec_Valuervalue,
+            Sec_Salevalue, Sec_Branch, Sec_Propertyacq, Sec_Otherinfo,
+            Sec_Address, Sec_Address1,lc.City_Code as Sec_City,district_code as
+            Sec_District,district_desc as districtdesc,
+            ls.State_Code as Sec_State,
+            Sec_Zip, Sec_West, Sec_East, Sec_North, Sec_South, Lc.City_Name As
+            Custcity,Ls.State_Name As Custstate, Org.Org_Name
+            ,sec_extofbuildmeas,SEC_CERSAI_ID,SEC_CERSAI_DATE,
+            sec_extofbuildmeas,sec_extnotcoveredmeas,SEC_BOUNDARIES,to_char(SEC_DEPOSIT_DATE,'dd/mm/yyyy')
+            as
+            SEC_DEPOSIT_DATE,SEC_STREETNO,SEC_WARDNO,SEC_PROP_STAGE,SEC_PROPACQUISITION,SEC_PROPACQUISITION_OTHERS,sec_saleamount,
+            sec_buildername,sec_refnoapprov,sec_nofloor,sec_ageofbuilding,SEC_WHT_PROJECTAPPROVED,SEC_BUILDERCODE,SEC_PROJECTNAME,CUS_SEC_CLASSIFICATION
+            ,SEC_CERSAIREFNO,SEC_SEARCHPERFORM_DATE,SEC_REMARKS,SEC_ALREADY_MORTG,SEC_CHARG_REFLECT,SEC_OTHERBNK_REMARK,SEC_REMARK_NOT_REFLECT,SEC_PROP_OBSERVED,SEC_CROPTYPE
+            ,sec_projectnunits,sec_unsoldunits,sec_projectheadcontact
+            From Security_Land Sl left join Laps_States Ls on
+            LS.State_Code=SL.Sec_State left join Laps_Cities Lc on
+            LC.City_Code=SL.Sec_City and Ls.state_id=Lc.STATE_ID
+            left join district_master on district_code=Sec_District left join
+            Organisations Org on org.org_scode=SL.sec_branch,CUS_SECURITIES
+            where
+            Sec_Id='?' and Sec_Id=CUS_SEC_ID
+      
+2025-04-07 12:55:48,453 [172.21.52.19 - 1 [WebContainer : 6]] INFO  com.sai.laps.helper.ConnectionFactory  - Connection from the getConnection() method.................
+2025-04-07 12:55:48,453 [172.21.52.19 - 1 [WebContainer : 6]] INFO  com.sai.laps.helper.ConnectionFactory  - lapsds connection -->com.ibm.ws.rsadapter.jdbc.WSJdbcDataSource@efa434fd
+2025-04-07 12:55:48,453 [172.21.52.19 - 1 [WebContainer : 6]] INFO  com.sai.laps.helper.ConnectionFactory  - Connection One Attributes====jdbc:oracle:thin:@172.20.111.230:1921:orcllaps====LAPS_DEV
+2025-04-07 12:55:48,456 [172.21.52.19 - 1 [WebContainer : 6]] ERROR com.sai.laps.helper.DBUtils  - SQLException in executeLAPSQuery(String strQuery)ORA-00918: column ambiguously defined
+
+2025-04-07 12:55:48,456 [172.21.52.19 - 1 [WebContainer : 6]] ERROR com.sai.laps.securitymaster.SecurityMasterBean  - java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+DISCLAIMER: Information contained and transmitted by this E-mail is proprietary to Karnataka Bank Ltd., and is intended for use only by the individual or entity to which it is addressed, and may contain information that is privileged, confidential or exempt from disclosure under applicable law. If this is forwarded message, the content of this E-mail may not have been sent with the authority of the bank. If you are not the intended recipient, an agent of the intended recipient or a person responsible for delivering the information to the named recipient, you are notified that any use, distribution, transmission, printing, copying or dissemination of this information in any way or in any manner is strictly prohibited. If you have received this communication in error, please delete this mail and notify us immediately at info@ktkbank.com WARNING: There are possibilities of Computer viruses getting transmitted via email. The recipient should check this email and any attachments for the presence of viruses. The bank accepts no liability for any damage caused by any virus probably transmitted by this email."
