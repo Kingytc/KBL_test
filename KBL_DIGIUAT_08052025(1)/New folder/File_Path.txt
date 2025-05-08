@@ -1,0 +1,3 @@
+FILE PATH :
+
+	com\sai\laps\ejb\FinacleBean.class

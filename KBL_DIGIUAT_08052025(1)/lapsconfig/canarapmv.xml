@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql>
+<query code="getcanara_api_details">
+	 	select API_URLINFO,PMV_USERNAME,PMV_PSW,AUT_USERNAME,AUT_PSW,CLIENT_ID,CLIENT_SECRET,SCOPE,GTYPE,SRC,DET,PATH_PUB_KEY,PATH_PRI_KEY from API_URLS where upper(ACTION_FOR)=
+	 	upper('^')
+	</query>
+	
+	</sql>
