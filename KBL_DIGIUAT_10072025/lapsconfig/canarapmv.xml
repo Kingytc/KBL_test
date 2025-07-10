@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql>
+<query code="getcanara_api_details">
+	 	select API_URLINFO,PMV_USERNAME,PMV_PSW,AUT_USERNAME,AUT_PSW,CLIENT_ID,CLIENT_SECRET,SCOPE,GTYPE,SRC,DET,PATH_PUB_KEY,PATH_PRI_KEY from API_URLS where upper(ACTION_FOR)=
+	 	upper('^')
+	</query>
+	
+	
+	<query code="get_nsdl_appno">
+	 	select NSDL_APPID,NSDL_REF_ID,NSDL_BANK_IFSCCODE from nsdl_application where NSDL_LAPSAPPNO = '^'
+	</query>
+	
+	<query code="get_nsdl_det_based_on_ref_id">
+	 	select NSDL_APPID,NSDL_LAPSAPPNO,NSDL_BANK_IFSCCODE from nsdl_application where NSDL_REF_ID = '^'
+	</query>
+	
+	<query code="get_Nsdl_app_det">
+	 	
+     SELECT A.CBS_ACCOUNTNO,TO_CHAR(A.MONDATE,'dd/mm/yyyy')  as MONDATE ,TO_CHAR(A.APP_PROCESSDATE,'dd/mm/yyyy') 
+      as APP_PROCESSDATE,TO_CHAR(A.APP_CLOSEDDATE,'dd/mm/yyyy')
+      as APP_CLOSEDDATE,LD.LOAN_RECMDAMT,LD.LOAN_AMTREQD,LD.LOAN_MODINTRATE
+     FROM APPLICATIONS A,LOANDETAILS LD WHERE A.APP_NO=LD.LOAN_APPNO AND A.APP_NO='^'
+	</query>
+	
+</sql>
